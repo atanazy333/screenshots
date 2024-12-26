@@ -24,3 +24,12 @@ A Python tool for processing images with OCR and searching through them based on
 ```bash
 pip install -r requirements.txt
 ```
+### OCR Configuration
+```py
+processor = OCRProcessor(
+    input_dir="./input",
+    output_dir="./output",
+    tesseract_path=r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+)
+
+```
