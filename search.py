@@ -15,15 +15,15 @@ class ImageSearcher:
     def __init__(self, search_dir: str = "./processed_images"):
         self.search_dir = Path(search_dir)
         if not self.search_dir.exists():
-            raise FileNotFoundError(f"Katalog {search_dir} nie istnieje")
+            raise FileNotFoundError(f"The directory {search_dir} does not exist.")
     
     def search(self, query: str, use_regex: bool = False) -> List[Path]:
         """
-        Wyszukuje obrazy zawierające zadany tekst.
+        Searches for images containing the specified text.
         
         Args:
-            query: Tekst do wyszukania
-            use_regex: Czy używać wyrażeń regularnych
+            query: The text to search for
+            use_regex: Whether to use regular expressions
         """
         query = query.lower()
         if use_regex:
@@ -41,27 +41,27 @@ class ImageSearcher:
                         if query in ocr_text:
                             results.append(image_path)
             except Exception as e:
-                logger.error(f"Błąd odczytu {image_path.name}: {e}")
+                logger.error(f"Error reading {image_path.name}: {e}")
         
         return results
 
     def display_results(self, paths: List[Path]):
-        """Wyświetla znalezione obrazy"""
+        """Displays the found images"""
         if not paths:
-            print("Nie znaleziono pasujących obrazów.")
+            print("No matching images found.")
             return
             
-        print(f"\nZnaleziono {len(paths)} obrazów:")
+        print(f"\nFound {len(paths)} images:")
         for path in paths:
             print(f"- {path.name}")
             try:
                 Image.open(path).show()
             except Exception as e:
-                logger.error(f"Nie można wyświetlić {path.name}: {e}")
+                logger.error(f"Cannot display {path.name}: {e}")
 
 def main():
     searcher = ImageSearcher()
-    query = input("Wprowadź tekst do wyszukania obrazu: ")
+    query = input("Enter text to search for in the image: ")
     results = searcher.search(query)
     searcher.display_results(results)
 
