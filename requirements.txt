@@ -1,0 +1,4 @@
+Pillow>=10.0.0
+pytesseract>=0.3.10
+imghdr>=0.1.0
+logging>=0.5.1.2
