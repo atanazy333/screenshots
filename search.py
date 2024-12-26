@@ -62,7 +62,7 @@ class ImageSearcher:
 def main():
     searcher = ImageSearcher()
     query = input("Enter text to search for in the image: ")
-    results = searcher.search(query)
+    results = searcher.search(query, use_regex=True)
     searcher.display_results(results)
 
 if __name__ == "__main__":
